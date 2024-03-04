@@ -13,10 +13,10 @@ def start(message: Message):
     bot.send_message(chat_id, f"Assalomu alaykum {full_name} ")
 
 
-@bot.message_handler(commands=['text','photo','video', 'animation','stiker'])
+@bot.message_handler(content_types=['text', 'photo', 'video', 'animation', 'sticker'])
 def reaction_to_message(message: Message):
-    chat_id = message.chat_id
-    bot.copy_message(5754538843, chat_id, message)
-
+    chat_id = message.chat.id
+    bot.copy_message(chat_id, chat_id, message.message_id)
+    # bot.send_message(chat_id, message.text)
 
 bot.polling()
